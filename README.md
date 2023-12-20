@@ -19,5 +19,6 @@ tzdata     2023.3
 wheel      0.41.2
 6- python manage.py makemigrations
 7- python manage.py migrate
-8- run the server 
+8- python manage.py createsuperuser
+9- run the server 
 python manage.py runserver
