@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div>
+  <div class="row">
+      <div class="container mt-3">
+
+      <div class="container mt-3">
+          {% if cart_products %}
+          <center>
+          <h3>Order Summary</h3>
+          </center>
+              {% for product in cart_products %}
+              
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <center>
+          <h5 class="card-title">{{ product.name }}</h5>
+          <br/>
+          <p class="card-text justified">{{ product.description }}</p>
+          
+          {% if product.is_sale %}
+          <div class="d-flex justify-content-center small text-warning mb-2">
+                  <div class="bi-star-fill"></div>
+                  &nbsp;&nbsp;Sale!&nbsp;&nbsp;
+                  <div class="bi-star-fill"></div>
+                  </div>
+  
+                  <!-- Product price-->
+                  <strike>
+                    BHD{{ product.price }}
+                  </strike>
+                  &nbsp;
+                  BHD{{ product.sale_price }}
+  
+  
+  
+          {% else %}
+          BHD{{ product.price }}
+              
+          {% endif %}
+              <br/><br/>
+          <div class="row justify-content-center">
+               <div class="col-md-2">Quantity:</div>
+        
+                      
+                  {% for key, value in quantities.items %}
+                      {% if key == product.id|slugify %}
+                  <option selected>{{ value }}</option>
+                      {% endif %}
+                  {% endfor %}
+
+                  
+              </div>
+              <br/>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div><br/>
+  
+  
+  
+              {% endfor %}
+              {% else %}
+              There's Nothing In Your Cart...
+              <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+          {% endif %}
+          </div>
+  
+  </div>
+  <div class="container text-center">
+      
+     <!-- <h6>Total Price: BHD{{total_price}}</h6> --> 
+      <br>
+      <a href="{% url 'home'%}" class="btn btn-secondary">Home</a> <a href="{% url 'cart_summary'%}" class="btn btn-secondary">Back</a> <a href="{% url 'customerdet'%}" class="btn btn-secondary">Order</a>
+  </div>
+  <br/><br/><br/><br/><br/><br/>
+  
+
+</div>
+
+
+
+
+
+    
+
+{% endblock %}

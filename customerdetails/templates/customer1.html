@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Customer Details</h1>
+        </div>
+    </div>
+</header>
+<br/><br/>
+<center>
+    {% if submitted %}
+    <br/><br/><br/><br/><br/>
+        <h3>Your order has been sent to process succussfully</h3>
+    {% else %}
+
+        <div class="container">
+            <form action="" method=POST >
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <input type="submit" value="Submit" class="btn btn-success">
+            </form>
+        </div>
+    {% endif %}
+        
+    </center>
+
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+{% endblock %}
